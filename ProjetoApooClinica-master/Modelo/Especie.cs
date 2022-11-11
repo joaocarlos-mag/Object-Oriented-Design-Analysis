@@ -8,5 +8,8 @@ namespace Modelo
 {
     class Especie
     {
+        public long EspecieId { get; set; }
+        public string Nome { get; set; }
+        public Especie Especie { get; set; }
     }
 }

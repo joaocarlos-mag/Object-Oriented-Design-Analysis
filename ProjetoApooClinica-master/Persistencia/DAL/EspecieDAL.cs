@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
-using System.Data.Entity;
-using Modelo;
-using Persistencia.Contexts;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Persistencia.DAL
 {
-    public class ExameDAL
+    class Especies
     {
         private EFContext context = new EFContext();
-        public IQueryable<Especies> ObterEspeciesClassificadasPorId()
+        public IQueryable<Especies> ObterExamesClassificadosPorId()
         {
-            return context.Exames.Include.OrderBy(b => b.EspeciesId);
+            return context.Especies.Include(c => c.Consulta).OrderBy(b => b.EspecieId);
         }
         public Exame ObterExamesPorId(long id)
         {
