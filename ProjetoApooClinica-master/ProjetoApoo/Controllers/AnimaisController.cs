@@ -1,247 +1,123 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using Modelo;
+﻿using Modelo;
 using Persistencia.DAL;
-using Persistencia.Contexts;
+using System.Net;
+using System.Web.Mvc;
 
 namespace ProjetoApoo.Controllers
 {
-    public class ProcedimentosController : Controller
+    public class AnimaisController : Controller
     {
-        private ExameDAL exameDAL = new ExameDAL();
-        private ConsultaDAL consultaDAL = new ConsultaDAL();
+        private EspecieDAL especieDAL = new EspecieDAL();
+        private UsuarioDAL usuarioDAL = new UsuarioDAL();
 
         // GET: Procedimentos
-        public ActionResult IndexExame()
+        public ActionResult IndexEspecie()
         {
-            return View(exameDAL.ObterExamesClassificadosPorId());
+            return View(especieDAL.ObterEspeciesClassificadasPorNome());
         }
 
         // GET: Procedimentos/Details/5
-        public ActionResult DetailsExame(long? id)
+        public ActionResult DetailsEspecie(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(
                 HttpStatusCode.BadRequest);
             }
-            Exame exame = exameDAL.ObterExamesPorId((long)id);
-            if (exame == null)
+            Especie especie = especieDAL.ObterEspeciesPorId((long)id);
+            if (especie == null)
             {
                 return HttpNotFound();
             }
-            return View(exame);
+            return View(especie);
         }
 
         // GET: Procedimentos/Create
-        public ActionResult CreateExame()
-        {
-            ViewBag.ConsultaId = new SelectList(consultaDAL.ObterConsultasClassificadosPorId(), "ConsultaId");
-            return View();
-        }
-
-        // POST: Procedimentos/Create
-        [HttpPost]
-        public ActionResult CreateExame(Exame exame)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    exameDAL.GravarExame(exame);
-                    return RedirectToAction("IndexExame");
-                }
-                return View(exame);
-            }
-            catch
-            {
-                return View(exame);
-            }
-        }
-
-        // GET: Procedimentos/Edit/5
-        public ActionResult EditExame(long? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(
-                HttpStatusCode.BadRequest);
-            }
-            Exame exame = exameDAL.ObterExamesPorId((long)id);
-            if (exame == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.ConsultaId = new SelectList(consultaDAL.ObterConsultasClassificadosPorId(), "ConsultaId"/*, exame.ConsultaId*/);
-            return View(exame);
-        }
-
-        // POST: Procedimentos/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult EditExame(Exame exame)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    exameDAL.GravarExame(exame);
-                    return RedirectToAction("IndexExame");
-                }
-                return View(exame);
-            }
-            catch
-            {
-                return View(exame);
-            }
-        }
-
-        // GET: Procedimentos/Delete/5
-        public ActionResult DeleteExame(long? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(
-                HttpStatusCode.BadRequest);
-            }
-            Exame exame = exameDAL.ObterExamesPorId((long)id);
-            if (exame == null)
-            {
-                return HttpNotFound();
-            }
-            return View(exame);
-        }
-
-        // POST: Procedimentos/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteExame(long id)
-        {
-            try
-            {
-                Exame exame = exameDAL.EliminarExamePorId(id);
-                return RedirectToAction("IndexExame");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        //CONSULTA
-
-        // GET: Procedimentos
-        public ActionResult IndexConsulta()
-        {
-            return View(consultaDAL.ObterConsultasClassificadosPorId());
-        }
-
-        // GET: Procedimentos/Details/5
-        public ActionResult DetailsConsulta(long? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(
-                HttpStatusCode.BadRequest);
-            }
-            Consulta consulta = consultaDAL.ObterConsultasPorId((long)id);
-            if (consulta == null)
-            {
-                return HttpNotFound();
-            }
-            return View(consulta);
-        }
-
-        // GET: Procedimentos/Create
-        public ActionResult CreateConsulta()
+        public ActionResult CreateEspecie()
         {
             return View();
         }
 
         // POST: Procedimentos/Create
         [HttpPost]
-        public ActionResult CreateConsulta(Consulta consulta)
+        public ActionResult CreateEspecie(Especie especie)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    consultaDAL.GravarConsulta(consulta);
-                    return RedirectToAction("IndexConsulta");
+                    especieDAL.GravarEspecie(especie);
+                    return RedirectToAction("IndexEspecie");
                 }
-                return View(consulta);
+                return View(especie);
             }
             catch
             {
-                return View(consulta);
+                return View(especie);
             }
         }
 
         // GET: Procedimentos/Edit/5
-        public ActionResult EditConsulta(long? id)
+        public ActionResult EditEspecie(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(
                 HttpStatusCode.BadRequest);
             }
-            Consulta consulta = consultaDAL.ObterConsultasPorId((long)id);
-            if (consulta == null)
+            Especie especie = especieDAL.ObterEspeciesPorId((long)id);
+            if (especie == null)
             {
                 return HttpNotFound();
             }
-            return View(consulta);
+            return View(especie);
         }
 
         // POST: Procedimentos/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditConsulta(Consulta consulta)
+        public ActionResult Editespecie(Especie especie)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    consultaDAL.GravarConsulta(consulta);
-                    return RedirectToAction("IndexConsulta");
+                    especieDAL.GravarEspecie(especie);
+                    return RedirectToAction("IndexEspecie");
                 }
-                return View(consulta);
+                return View(especie);
             }
             catch
             {
-                return View(consulta);
+                return View(especie);
             }
         }
 
         // GET: Procedimentos/Delete/5
-        public ActionResult DeleteConsulta(long? id)
+        public ActionResult DeleteEspecie(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(
                 HttpStatusCode.BadRequest);
             }
-            Consulta consulta = consultaDAL.ObterConsultasPorId((long)id);
-            if (consulta == null)
+            Especie especie = especieDAL.ObterEspeciesPorId((long)id);
+            if (especie == null)
             {
                 return HttpNotFound();
             }
-            return View(consulta);
+            return View(especie);
         }
 
         // POST: Procedimentos/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConsulta(long id)
+        public ActionResult DeleteEspecie(long id)
         {
             try
             {
-                Consulta consulta = consultaDAL.EliminarConsultaPorId(id);
-                return RedirectToAction("IndexConsulta");
+                Especie especie = especieDAL.EliminarEspeciePorId(id);
+                return RedirectToAction("Indexespecie");
             }
             catch
             {

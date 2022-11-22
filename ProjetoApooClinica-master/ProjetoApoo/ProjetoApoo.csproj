@@ -110,6 +110,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -135,6 +145,13 @@
     <Content Include="Views\Procedimentos\CreateConsulta.cshtml" />
     <Content Include="Views\Procedimentos\EditConsulta.cshtml" />
     <Content Include="Views\Procedimentos\DeleteConsulta.cshtml" />
+    <Content Include="Views\Animais\IndexEspecie.cshtml" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Views\Animais\DetailsEspecie.cshtml" />
+    <Content Include="Views\Animais\CreateEspecie.cshtml" />
+    <Content Include="Views\Animais\EditEspecie.cshtml" />
+    <Content Include="Views\Animais\DeleteEspecie.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

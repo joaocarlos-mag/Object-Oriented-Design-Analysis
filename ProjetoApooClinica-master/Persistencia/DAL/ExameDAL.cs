@@ -11,9 +11,9 @@ namespace Persistencia.DAL
     public class ExameDAL
     {
         private EFContext context = new EFContext();
-        public IQueryable<Especies> ObterEspeciesClassificadasPorId()
+        public IQueryable<Exame> ObterExamesClassificadosPorId()
         {
-            return context.Exames.Include.OrderBy(b => b.EspeciesId);
+            return context.Exames.Include(c => c.Consulta).OrderBy(b => b.ExameId);
         }
         public Exame ObterExamesPorId(long id)
         {

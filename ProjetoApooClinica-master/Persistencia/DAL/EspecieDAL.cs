@@ -1,40 +1,44 @@
-﻿using System;
+﻿using Modelo;
+using Persistencia.Contexts;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Persistencia.DAL
 {
-    class Especies
+    public class EspecieDAL
     {
         private EFContext context = new EFContext();
-        public IQueryable<Especies> ObterExamesClassificadosPorId()
+        public IQueryable<Especie> ObterEspeciesClassificadasPorNome()
         {
-            return context.Especies.Include(c => c.Consulta).OrderBy(b => b.EspecieId);
+            return context.Especies.OrderBy(b => b.Nome);
         }
-        public Exame ObterExamesPorId(long id)
+
+        public Especie ObterEspeciesPorId(long id)
         {
-            return context.Exames.Where(f => f.ExameId == id).Include(c => c.Consulta).First();
+            return context.Especies.Where(f => f.EspecieId == id).First();
         }
-        public void GravarExame(Exame exame)
+        public void GravarEspecie(Especie especie)
         {
-            if (exame.ExameId == 0)
+            if (especie.EspecieId == 0)
             {
-                context.Exames.Add(exame);
+                context.Especies.Add(especie);
             }
             else
             {
-                context.Entry(exame).State = EntityState.Modified;
+                context.Entry(especie).State = EntityState.Modified;
             }
             context.SaveChanges();
         }
-        public Exame EliminarExamePorId(long id)
+        public Especie EliminarEspeciePorId(long id)
         {
-            Exame exame = ObterExamesPorId(id);
-            context.Exames.Remove(exame);
+            Especie especie = ObterEspeciesPorId(id);
+            context.Especies.Remove(especie);
             context.SaveChanges();
-            return exame;
+            return especie;
         }
     }
 }
