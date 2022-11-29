@@ -12,11 +12,14 @@ namespace Persistencia.Contexts
     {
         public EFContext() : base("Asp_Net_MVC_CSApoo")
         {
-            Database.SetInitializer<EFContext>(new DropCreateDatabaseIfModelChanges<EFContext>());
+            Database.SetInitializer<EFContext>(
+            new DropCreateDatabaseIfModelChanges<EFContext>());
+            this.Configuration.ProxyCreationEnabled = false;
         }
         public DbSet<Exame> Exames { get; set; }
         public DbSet<Consulta> Consultas { get; set; }
-        public DbSet<Usuario> Usuarios { get; set; }
-        public DbSet<Especie> Especies { get; set; }
+        public DbSet<ConsultaExame> ConsultasExames { get; set; }
+        public System.Data.Entity.DbSet<Secretario> Secretarios { get; set; }
+        public System.Data.Entity.DbSet<Cliente> Clientes { get; set; }
     }
 }
