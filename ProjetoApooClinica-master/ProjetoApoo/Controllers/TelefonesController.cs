@@ -51,6 +51,7 @@ namespace ProjetoApoo.Controllers
         // Create get
         public ActionResult Create()
         {
+            ViewBag.ID = Request.QueryString["idCliente"];
             return View();
         }
         // Create post
