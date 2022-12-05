@@ -10,7 +10,7 @@ namespace Persistencia.Contexts
 {
     public class EFContext : DbContext
     {
-        public EFContext() : base("Asp_Net_MVC_CSApoo")
+        public EFContext() : base("JC")
         {
             Database.SetInitializer<EFContext>(
             new DropCreateDatabaseIfModelChanges<EFContext>()); 
@@ -24,6 +24,5 @@ namespace Persistencia.Contexts
         public System.Data.Entity.DbSet<Cliente> Clientes { get; set; }
         public System.Data.Entity.DbSet<Veterinario> Veterinarios { get; set; }
         public DbSet<Pet> Pets { get; set; }
-        public DbSet<Especie> Especies { get; set; }
     }
 }
